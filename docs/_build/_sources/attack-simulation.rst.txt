@@ -1,0 +1,31 @@
+.. _attack-simulation:
+
+Attack Simulation
+=================
+
+The **attacker** container includes recon and attack tools (e.g. nmap, curl, Python scripts) to simulate intrusions against the Andesfinance frontend and SSH honeypot.
+
+Quick commands
+--------------
+
+- **Enter the container**: ``docker exec -it attacker-tools /bin/bash``
+- **Run automated attacks**: From inside the container, ``cd attack_scripts/`` and run ``python3 main_attacker.py``
+- **Manual tests**: Use curl for command-injection or SSH from inside the container against the frontend and honeypot
+
+See :doc:`usage` for full usage examples (manual command-injection, automated script).
+
+Attack components
+-----------------
+
+The ``attacker/attack_scripts/components/`` directory includes:
+
+- ``base_attacker.py`` — Base attacker class
+- ``command_injection.py`` — Command injection
+- ``data_exfiltration.py`` — Data exfiltration
+- ``port_scanning.py`` — Port scanning
+- ``reconnaissance.py`` — Reconnaissance
+- ``sql_injection.py`` — SQL injection
+- ``ssh_bruteforce.py`` — SSH brute force
+- ``web_application_discovery.py`` — Web application discovery
+
+The main entry point is ``main_attacker.py``, which orchestrates these components.

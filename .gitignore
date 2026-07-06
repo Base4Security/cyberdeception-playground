@@ -1,0 +1,41 @@
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
+cowrie/logs/*.log
+
+# Elasticsearch data
+elasticsearch_data/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+old/
+*old/*
+old*

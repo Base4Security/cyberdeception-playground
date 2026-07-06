@@ -1,0 +1,144 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attack Simulation &mdash; Cyber Deception Playground 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cyber Deception Playground
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Attack Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-commands">Quick commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attack-components">Attack components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cyber Deception Playground</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Attack Simulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/attack-simulation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="attack-simulation">
+<span id="id1"></span><h1>Attack Simulation<a class="headerlink" href="#attack-simulation" title="Link to this heading"></a></h1>
+<p>The <strong>attacker</strong> container includes recon and attack tools (e.g. nmap, curl, Python scripts) to simulate intrusions against the Andesfinance frontend and SSH honeypot.</p>
+<section id="quick-commands">
+<h2>Quick commands<a class="headerlink" href="#quick-commands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Enter the container</strong>: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">attacker-tools</span> <span class="pre">/bin/bash</span></code></p></li>
+<li><p><strong>Run automated attacks</strong>: From inside the container, <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">attack_scripts/</span></code> and run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">main_attacker.py</span></code></p></li>
+<li><p><strong>Manual tests</strong>: Use curl for command-injection or SSH from inside the container against the frontend and honeypot</p></li>
+</ul>
+<p>See <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> for full usage examples (manual command-injection, automated script).</p>
+</section>
+<section id="attack-components">
+<h2>Attack components<a class="headerlink" href="#attack-components" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">attacker/attack_scripts/components/</span></code> directory includes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base_attacker.py</span></code> — Base attacker class</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">command_injection.py</span></code> — Command injection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_exfiltration.py</span></code> — Data exfiltration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">port_scanning.py</span></code> — Port scanning</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reconnaissance.py</span></code> — Reconnaissance</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sql_injection.py</span></code> — SQL injection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh_bruteforce.py</span></code> — SSH brute force</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">web_application_discovery.py</span></code> — Web application discovery</p></li>
+</ul>
+<p>The main entry point is <code class="docutils literal notranslate"><span class="pre">main_attacker.py</span></code>, which orchestrates these components.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="configuration.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Lab de Decepción / Base4Security.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

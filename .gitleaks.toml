@@ -1,0 +1,21 @@
+# Gitleaks configuration for Cyber Deception Playground
+# Intentional test credentials are expected in this research tool.
+# Allow-list them to avoid false positives in CI.
+
+title = "Cyber Deception Playground — Gitleaks Config"
+
+[allowlist]
+  description = "Intentional test/demo credentials used in the lab environment"
+  regexTarget = "match"
+  # Allowlist known fictitious credentials
+  regexes = [
+    "vulnerable_password",
+    "vulnerable_secret_key",
+    "admin123",
+    "internal_api_key_12345",
+    "secret_api_key_98765",
+    "backup123",
+    "maria123",
+    "juan123",
+    "pedro123",
+  ]

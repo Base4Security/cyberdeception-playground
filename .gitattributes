@@ -1,0 +1,20 @@
+# Normalize line endings. The repo stores LF; text files are checked out as LF
+# regardless of platform. This prevents CRLF from Windows checkouts breaking
+# shell scripts that run inside the Linux containers (e.g. dashboards/setup-kibana.sh
+# under busybox sh).
+* text=auto eol=lf
+
+# Scripts and configs executed inside Linux containers MUST be LF.
+*.sh      text eol=lf
+*.ndjson  text eol=lf
+Dockerfile text eol=lf
+
+# Windows batch files must stay CRLF.
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+
+# Binary assets — never normalize or diff.
+*.xlsx    binary
+*.png     binary
+*.pdf     binary
+*.pyc     binary

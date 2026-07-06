@@ -1,0 +1,65 @@
+.. Cyber Deception Playground documentation master file
+
+Cyber Deception Playground
+==========================
+
+**Open-source lab for adversary and defender perspectives on cyber deception.** Deploy a fictitious financial environment (**Andesfinance**) with configurable deception levels, monitoring (Elastic Stack), and built-in attacker simulation—all via Docker Compose.
+
+This project disseminates both adversary and defender perspectives on cyber deception. It deploys a fictitious production environment with monitoring, multiple deception levels, and an attacker container. The environment simulates a financial organization with intentionally vulnerable web services, SSH honeypots, decoy APIs, fake activity generators, and optional high-fidelity deception (banners, tampered executables).
+
+Objective
+---------
+
+Show how an environment looks with:
+
+- Multiple deployed deception activities
+- Activity monitoring
+- An adversary facing increasing decision-making difficulty
+
+Features
+--------
+
+- **Configurable deception levels**: None, Basic, Complete, Impossible (progressive honeypots, decoys, and anti-forensics).
+- **Full stack**: Node.js frontend/backend, MySQL, custom SSH honeypot, fake activity generator, Elastic Stack (Filebeat, Elasticsearch, Kibana).
+- **Attacker container**: Preloaded with recon and attack scripts (reconnaissance, port scanning, SQL injection, command injection, SSH brute force, data exfiltration).
+- **Observability**: Centralized logs and Kibana dashboards for events, source IPs, and executed commands.
+- **Cross-platform**: Docker Compose; startup scripts for Linux (``startup.sh``) and Windows (``startup.bat``).
+
+Schematic
+---------
+
+The lab is organized in networks: External (attacker container), DMZ (frontend), Server (backend, SSH honeypot, fake activity), Database (MySQL), and Monitor (Filebeat, Elasticsearch, Kibana). See :doc:`architecture` for the full diagram and security layout.
+
+License
+-------
+
+This project is licensed under the **MIT License**. See the repository `LICENSE`_ file for the full text.
+
+.. _LICENSE: https://github.com/Base4Security/cyberdeception-playground/blob/main/LICENSE
+
+Changelog
+---------
+
+See `CHANGELOG.md`_ in the repository for version history and notable changes.
+
+.. _CHANGELOG.md: https://github.com/Base4Security/cyberdeception-playground/blob/main/CHANGELOG.md
+
+Contents
+--------
+
+.. toctree::
+   :maxdepth: 2
+   :caption: User Guide
+
+   installation
+   usage
+   architecture
+   configuration
+   attack-simulation
+   troubleshooting
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Project
+
+   contributing

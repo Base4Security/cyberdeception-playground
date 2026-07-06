@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-python:
+    name: Lint Python (attacker, honeypot, fake-activity)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install flake8
+        run: pip install flake8
+
+      - name: Lint attacker scripts
+        run: |
+          flake8 attacker/attack_scripts/ \
+            --max-line-length=120 \
+            --extend-ignore=E501,W503 \
+            --exclude=__pycache__
+
+      - name: Lint SSH honeypot
+        run: |
+          flake8 ssh-honeypot/ssh_honeypot.py \
+            --max-line-length=120 \
+            --extend-ignore=E501,W503
+
+      - name: Lint fake-activity
+        run: |
+          flake8 fake-activity/app.py \
+            --max-line-length=120 \
+            --extend-ignore=E501,W503
+
+  validate-compose:
+    name: Validate docker-compose.yml
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate compose configuration
+        run: docker compose config --quiet
+
+  security-scan:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Intentional test credentials are expected — configure .gitleaks.toml to allowlist them
+        continue-on-error: true
